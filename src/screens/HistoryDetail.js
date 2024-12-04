@@ -14,8 +14,43 @@ import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
+const randomNames = [
+  "Sarah Wilson",
+  "James Chen",
+  "Maria Garcia",
+  "Alex Thompson",
+  "Priya Patel",
+  "David Kim",
+  "Emma Roberts",
+  "Michael Zhang",
+  "Sofia Rodriguez",
+  "John Smith"
+];
+
+const randomAvatars = [
+  'https://randomuser.me/api/portraits/women/1.jpg',
+  'https://randomuser.me/api/portraits/men/2.jpg',
+  'https://randomuser.me/api/portraits/women/3.jpg',
+  'https://randomuser.me/api/portraits/men/4.jpg',
+  'https://randomuser.me/api/portraits/women/5.jpg',
+  'https://randomuser.me/api/portraits/men/6.jpg',
+  'https://randomuser.me/api/portraits/women/7.jpg',
+  'https://randomuser.me/api/portraits/men/8.jpg',
+  'https://randomuser.me/api/portraits/women/9.jpg',
+  'https://randomuser.me/api/portraits/men/10.jpg'
+];
+
 const HistoryDetail = ({ navigation, route }) => {
   const { order } = route.params;
+  
+  // Generate random name and avatar when component mounts
+  const randomName = React.useMemo(() => {
+    return randomNames[Math.floor(Math.random() * randomNames.length)];
+  }, []);
+
+  const randomAvatar = React.useMemo(() => {
+    return randomAvatars[Math.floor(Math.random() * randomAvatars.length)];
+  }, []);
 
   const getServicePrice = (serviceType) => {
     switch (serviceType) {
@@ -65,10 +100,10 @@ const HistoryDetail = ({ navigation, route }) => {
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.profileCard}>
           <Image
-            source={{ uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d' }}
+            source={{ uri: randomAvatar }}
             style={styles.profileImage}
           />
-          <Text style={styles.profileName}>{order.customer_name}</Text>
+          <Text style={styles.profileName}>{randomName}</Text>
           <View style={styles.ratingBox}>
             {[1, 2, 3, 4, 5].map((star) => (
               <Ionicons 

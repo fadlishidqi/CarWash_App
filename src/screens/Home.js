@@ -69,25 +69,25 @@ const Home = ({ navigation }) => {
     {
       id: 1,
       carModel: 'Toyota Avanza',
-      image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d',
+      image: 'https://cdn.antaranews.com/cache/1200x800/2021/06/19/IMG-20210619-WA0028_1.jpg',
       date: '05\nAGT',
     },
     {
       id: 2,
       carModel: 'Honda Jazz',
-      image: 'https://images.unsplash.com/photo-1550355291-bbee04a92027',
+      image: 'https://www.honda-indonesia.com/glide/2021/06/16/honda_jazz_1__1588046930725__1623839564099.jpg?w=900&s=6b9fe85241948fa1620168ad3754a2b3',
       date: '06\nAGT',
     },
     {
       id: 3,
       carModel: 'Suzuki Ertiga',
-      image: 'https://images.unsplash.com/photo-1594611342073-4bb7683c27ad',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqJua4vc12AnpUkp1Gv-cPrqQePAKWiYVlzg&s',
       date: '07\nAGT',
     },
     {
       id: 4,
       carModel: 'Daihatsu Xenia',
-      image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341',
+      image: 'https://cdn.antaranews.com/cache/1200x800/2011/05/20110507052854xenia6x4.jpg',
       date: '08\nAGT',
     },
   ];

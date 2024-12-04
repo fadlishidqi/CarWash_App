@@ -127,33 +127,34 @@ const MakeOrder = ({ navigation }) => {
   };
 
   const handleSubmit = async () => {
+    // Validasi input tetap sama
     if (!formData.name.trim()) {
       Alert.alert('Error', 'Please enter your name');
       return;
     }
-
+  
     if (!formData.carType.trim()) {
       Alert.alert('Error', 'Please enter car type');
       return;
     }
-
+  
     if (!formData.policeNumber.trim()) {
       Alert.alert('Error', 'Please enter police number');
       return;
     }
-
+  
     if (!formData.location.trim()) {
       Alert.alert('Error', 'Please enter your location');
       return;
     }
-
+  
     if (!formData.selectedService) {
       Alert.alert('Error', 'Please select a service');
       return;
     }
-
+  
     setLoading(true);
-
+  
     try {
       const { data, error } = await supabase
         .from('orders')
@@ -170,17 +171,16 @@ const MakeOrder = ({ navigation }) => {
           },
         ])
         .select();
-
+  
       if (error) throw error;
-
-      Alert.alert('Success', 'Your order has been placed successfully!', [
-        {
-          text: 'OK',
-          onPress: () => {
-            navigation.navigate('MainTabs', { screen: 'Notifikasi' });
-          },
-        },
-      ]);
+  
+      navigation.navigate('MainTabs', { 
+        screen: 'Riwayat',
+        params: {
+          refresh: true 
+        }
+      });
+      
     } catch (error) {
       Alert.alert('Error', error.message);
     } finally {

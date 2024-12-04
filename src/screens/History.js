@@ -63,28 +63,30 @@ const History = ({ navigation }) => {
     }
   };
 
-  useEffect(() => {
-    fetchOrders();
+  // Di History.js
+useEffect(() => {
+  fetchOrders();
 
-    const subscription = supabase
-      .channel('order_updates')
-      .on('postgres_changes', 
-        { 
-          event: '*', 
-          schema: 'public', 
-          table: 'orders',
-          filter: `user_id=eq.${user.id}`
-        }, 
-        payload => {
-          fetchOrders();
-        }
-      )
-      .subscribe();
+  // Listen untuk perubahan focus
+  const unsubscribe = navigation.addListener('focus', () => {
+    fetchOrders(); // Refresh data ketika screen mendapat focus
+  });
 
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
+  // Listen untuk perubahan params
+  const unsubscribeParams = navigation.addListener('state', (e) => {
+    const refresh = navigation.getState()?.routes?.find(r => r.name === 'Riwayat')?.params?.refresh;
+    if (refresh) {
+      fetchOrders();
+      // Reset params setelah refresh
+      navigation.setParams({ refresh: false });
+    }
+  });
+
+  return () => {
+    unsubscribe();
+    unsubscribeParams();
+  };
+}, [navigation]);
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
